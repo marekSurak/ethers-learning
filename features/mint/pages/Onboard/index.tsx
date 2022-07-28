@@ -6,7 +6,7 @@ import { getEthProvider } from '../../utils/getEthProvider'
 import { useInitOnboard } from '../../utils/useInitOnboard'
 
 export const Onboard: NextPage = () => {
-  const { connect, wallet, isConnecting } = useInitOnboard()
+  const { connect, disconnect, wallet, isConnecting } = useInitOnboard()
   const ethProvider = getEthProvider(wallet)
 
   console.log('ethersProvider', ethProvider)
@@ -15,15 +15,17 @@ export const Onboard: NextPage = () => {
     await connect()
   }
 
+  const handleDisconnectWallet = async () => {
+    if (wallet?.label) await disconnect({ label: wallet.label })
+  }
+
   return (
     <main>
       <Button
         isLoading={isConnecting}
-        type="button"
-        onClick={handleConnectWallet}
-        colorScheme="blue"
+        onClick={wallet ? handleDisconnectWallet : handleConnectWallet}
       >
-        Connect wallet
+        {wallet ? 'Disconnect' : 'Connect'}
       </Button>
     </main>
   )
