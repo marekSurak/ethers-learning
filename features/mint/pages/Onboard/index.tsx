@@ -2,6 +2,8 @@
 import { Button } from '@chakra-ui/react'
 import type { NextPage } from 'next'
 
+import { SendTransaction } from '../../components/SendTransaction'
+import { WalletInfo } from '../../components/WalletInfo'
 import { getEthProvider } from '../../utils/getEthProvider'
 import { useInitOnboard } from '../../utils/useInitOnboard'
 
@@ -10,6 +12,7 @@ export const Onboard: NextPage = () => {
   const ethProvider = getEthProvider(wallet)
 
   console.log('ethersProvider', ethProvider)
+  console.log('wallet', wallet)
 
   const handleConnectWallet = async () => {
     await connect()
@@ -27,6 +30,12 @@ export const Onboard: NextPage = () => {
       >
         {wallet ? 'Disconnect' : 'Connect'}
       </Button>
+      {wallet && ethProvider && (
+        <>
+          <WalletInfo data={wallet} />
+          <SendTransaction ethProvider={ethProvider} />
+        </>
+      )}
     </main>
   )
 }

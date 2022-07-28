@@ -7,7 +7,8 @@ export const getEthProvider = (wallet: WalletState | null) => {
   let ethProvider = null
 
   if (wallet) {
-    ethProvider = new ethers.providers.Web3Provider(wallet?.provider, 'any')
+    ethProvider = new ethers.providers.Web3Provider(wallet?.provider)
+    // await ethProvider.send('eth_requestAccounts', [])
   }
 
   return ethProvider
