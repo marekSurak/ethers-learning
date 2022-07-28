@@ -1,17 +1,14 @@
-// import { ethers } from 'ethers'
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import type { NextPage } from 'next'
 
+import { getEthProvider } from '../../utils/getEthProvider'
 import { useInitOnboard } from '../../utils/useInitOnboard'
 
 export const Onboard: NextPage = () => {
-  const { connect } = useInitOnboard()
+  const { connect, wallet } = useInitOnboard()
+  const ethProvider = getEthProvider(wallet)
 
-  // create an ethers provider
-  // let ethersProvider
-
-  // if (wallet) {
-  //   ethersProvider = new ethers.providers.Web3Provider(wallet.provider, 'any')
-  // }
+  console.log('ethersProvider', ethProvider)
 
   const handleConnectWallet = async () => {
     await connect()
