@@ -38,6 +38,9 @@ export const globalStyles = globalCss({
   'button, input': {
     fontFamily: 'Montserrat',
   },
+  a: {
+    color: '#000',
+  },
   'button, a': {
     cursor: 'pointer',
   },

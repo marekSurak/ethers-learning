@@ -2,7 +2,6 @@ import { styled } from 'styles/stitches.config'
 
 export const Heading = styled('h1', {
   fontSize: '$6',
-  color: '$text',
 
   variants: {
     size: {
@@ -33,9 +32,21 @@ export const Heading = styled('h1', {
         fontFamily: '$montserrat',
       },
     },
+    variant: {
+      primary: {
+        color: '$text',
+      },
+      secondary: {
+        color: '$textSecondary',
+      },
+      terniary: {
+        color: '$textTerniary',
+      },
+    },
   },
   defaultVariants: {
     size: '6',
     light: false,
+    variant: 'primary',
   },
 })
