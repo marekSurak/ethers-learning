@@ -44,4 +44,14 @@ export const globalStyles = globalCss({
   'button, a': {
     cursor: 'pointer',
   },
+  button: {
+    '&:disabled': {
+      cursor: 'not-allowed',
+      filter: 'grayscale(90%)',
+
+      '&:hover': {
+        filter: 'grayscale(90%)',
+      },
+    },
+  },
 })

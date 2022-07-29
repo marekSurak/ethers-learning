@@ -16,9 +16,7 @@ interface IProps {
 export const SendTransaction = ({ ethProvider }: IProps) => {
   const signer = ethProvider.getSigner()
   const [tsxData, setTsxData] =
-    useState<ethers.providers.TransactionResponse | null>({
-      hash: '12312312313123123',
-    })
+    useState<ethers.providers.TransactionResponse | null>(null)
 
   const [txStatus, setTxStatus] = useState<Transaction>(Transaction.INITIAL)
 
@@ -55,7 +53,11 @@ export const SendTransaction = ({ ethProvider }: IProps) => {
           id="walletAddress"
           placeholder="Enter your wallet address (0x...)"
         />
-        <Button variant="secondary" type="submit">
+        <Button
+          variant="secondary"
+          type="submit"
+          disabled={txStatus === Transaction.PENDING}
+        >
           Send ETH
         </Button>
       </Form>
