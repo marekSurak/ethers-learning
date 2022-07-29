@@ -1,15 +1,21 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { Button } from '@chakra-ui/react'
 import type { NextPage } from 'next'
 
+import { Box } from 'components/Box'
+import { Button } from 'components/Button'
+import { Heading } from 'components/Heading'
+import { substractMiddleString } from 'utils/substractMiddleString'
+
+import { Content } from './styled'
+
 import { SendTransaction } from '../../components/SendTransaction'
-import { WalletInfo } from '../../components/WalletInfo'
 import { getEthProvider } from '../../utils/getEthProvider'
 import { useInitOnboard } from '../../utils/useInitOnboard'
 
 export const Onboard: NextPage = () => {
   const { connect, disconnect, wallet, isConnecting } = useInitOnboard()
   const ethProvider = getEthProvider(wallet)
+  const isAuthorized = wallet && ethProvider && !isConnecting
 
   console.log('ethersProvider', ethProvider)
   console.log('wallet', wallet)
@@ -23,19 +29,28 @@ export const Onboard: NextPage = () => {
   }
 
   return (
-    <main>
+    <Content>
+      <Heading>Welcome to web3!</Heading>
+
+      <Heading as="h2" size="5" light css={{ marginTop: '$4' }}>
+        {isAuthorized
+          ? `Wallet ${substractMiddleString(
+              wallet.accounts[0].address
+            )} connected!`
+          : 'Connect your wallet to start'}
+      </Heading>
       <Button
-        isLoading={isConnecting}
+        type="button"
         onClick={wallet ? handleDisconnectWallet : handleConnectWallet}
+        css={{ marginTop: '$3' }}
       >
         {wallet ? 'Disconnect' : 'Connect'}
       </Button>
-      {wallet && ethProvider && (
-        <>
-          <WalletInfo data={wallet} />
+      {isAuthorized && (
+        <Box>
           <SendTransaction ethProvider={ethProvider} />
-        </>
+        </Box>
       )}
-    </main>
+    </Content>
   )
 }

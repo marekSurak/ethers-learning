@@ -14,9 +14,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.2.4",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@stitches/react": "^1.2.8",
     "@web3-onboard/coinbase": "^2.0.9",
     "@web3-onboard/core": "^2.5.0",
     "@web3-onboard/injected-wallets": "^2.0.14",
