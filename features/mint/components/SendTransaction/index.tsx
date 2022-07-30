@@ -20,6 +20,8 @@ export const SendTransaction = ({ ethProvider }: IProps) => {
 
   const [txStatus, setTxStatus] = useState<Transaction>(Transaction.INITIAL)
 
+  const [recipientAddress, setRecipientAddress] = useState<string>('')
+
   const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -27,8 +29,7 @@ export const SendTransaction = ({ ethProvider }: IProps) => {
 
     try {
       const tx = await signer.sendTransaction({
-        // 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
-        to: e.target[0].value,
+        to: recipientAddress,
         value: ethers.utils.parseEther('0.01'),
       })
 
@@ -38,8 +39,6 @@ export const SendTransaction = ({ ethProvider }: IProps) => {
       await tx.wait(1)
 
       setTxStatus(Transaction.SUCCESS)
-
-      console.log('tx', tx)
     } catch (e) {
       setTxStatus(Transaction.ERROR)
     }
@@ -50,7 +49,9 @@ export const SendTransaction = ({ ethProvider }: IProps) => {
       {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <Form onSubmit={handleSubmitForm}>
         <Input
-          id="walletAddress"
+          value={recipientAddress}
+          id="recipientAddress"
+          onChange={(e) => setRecipientAddress(e.target.value)}
           placeholder="Enter your wallet address (0x...)"
         />
         <Button
