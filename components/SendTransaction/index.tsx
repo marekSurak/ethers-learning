@@ -2,12 +2,11 @@ import { ethers } from 'ethers'
 import { useState } from 'react'
 
 import { Box } from 'components/Box'
-import { Button } from 'components/Button'
-import { Input } from 'components/Input'
 import { Transaction } from 'types/transaction'
 
+import { SendTxForm } from './components/SendTxForm'
+import type { ISendTxFormData } from './components/SendTxForm/types'
 import { TxHistory } from './components/TxHistory'
-import { Form } from './styled'
 
 interface IProps {
   ethProvider: ethers.providers.Web3Provider
@@ -20,16 +19,12 @@ export const SendTransaction = ({ ethProvider }: IProps) => {
 
   const [txStatus, setTxStatus] = useState<Transaction>(Transaction.INITIAL)
 
-  const [recipientAddress, setRecipientAddress] = useState<string>('')
-
-  const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
+  const handleSubmitForm = async (data: ISendTxFormData) => {
     setTxStatus(Transaction.PENDING)
 
     try {
       const tx = await signer.sendTransaction({
-        to: recipientAddress,
+        to: data.recipientAddress,
         value: ethers.utils.parseEther('0.01'),
       })
 
@@ -46,21 +41,7 @@ export const SendTransaction = ({ ethProvider }: IProps) => {
 
   return (
     <Box>
-      <Form onSubmit={handleSubmitForm}>
-        <Input
-          value={recipientAddress}
-          id="recipientAddress"
-          onChange={(e) => setRecipientAddress(e.target.value)}
-          placeholder="Enter your wallet address (0x...)"
-        />
-        <Button
-          variant="secondary"
-          type="submit"
-          disabled={txStatus === Transaction.PENDING}
-        >
-          Send ETH
-        </Button>
-      </Form>
+      <SendTxForm txStatus={txStatus} onSubmit={handleSubmitForm} />
       {tsxData && <TxHistory txData={tsxData} txStatus={txStatus} />}
     </Box>
   )
