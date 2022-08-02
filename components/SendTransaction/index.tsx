@@ -46,7 +46,6 @@ export const SendTransaction = ({ ethProvider }: IProps) => {
 
   return (
     <Box>
-      {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <Form onSubmit={handleSubmitForm}>
         <Input
           value={recipientAddress}
