@@ -2,6 +2,7 @@ import { ethers } from 'ethers'
 import { useState } from 'react'
 
 import { Box } from 'components/Box'
+import { Text } from 'components/Text'
 import { Transaction } from 'types/transaction'
 
 import { SendTxForm } from './components/SendTxForm'
@@ -20,6 +21,7 @@ export const SendTransaction = ({ ethProvider }: IProps) => {
   const [txStatus, setTxStatus] = useState<Transaction>(Transaction.INITIAL)
 
   const handleSubmitForm = async (data: ISendTxFormData) => {
+    setTsxData(null)
     setTxStatus(Transaction.PENDING)
 
     try {
@@ -36,6 +38,7 @@ export const SendTransaction = ({ ethProvider }: IProps) => {
       setTxStatus(Transaction.SUCCESS)
     } catch (e) {
       setTxStatus(Transaction.ERROR)
+      console.error(e)
     }
   }
 
@@ -43,6 +46,11 @@ export const SendTransaction = ({ ethProvider }: IProps) => {
     <Box>
       <SendTxForm txStatus={txStatus} onSubmit={handleSubmitForm} />
       {tsxData && <TxHistory txData={tsxData} txStatus={txStatus} />}
+      {txStatus === Transaction.ERROR && (
+        <Text css={{ color: '$textError' }}>
+          Error while sending transaction.
+        </Text>
+      )}
     </Box>
   )
 }

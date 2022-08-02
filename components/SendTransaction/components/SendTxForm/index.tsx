@@ -32,6 +32,7 @@ export const SendTxForm: FC<IProps> = ({ onSubmit, txStatus }) => {
   } = formMethods
 
   const inputError = errors.recipientAddress?.message
+  const isPending = txStatus === Transaction.PENDING
 
   return (
     <FormProvider {...formMethods}>
@@ -44,12 +45,8 @@ export const SendTxForm: FC<IProps> = ({ onSubmit, txStatus }) => {
           />
           {inputError && <ErrorMsg>{inputError}</ErrorMsg>}
         </FormLine>
-        <Button
-          variant="secondary"
-          type="submit"
-          disabled={txStatus === Transaction.PENDING}
-        >
-          Send ETH
+        <Button variant="secondary" type="submit" disabled={isPending}>
+          {isPending ? 'Sending...' : 'Send 0.01 ETH'}
         </Button>
       </Form>
     </FormProvider>
