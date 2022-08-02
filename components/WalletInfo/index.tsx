@@ -7,10 +7,6 @@ interface IProps {
   data: WalletState
 }
 
-export const WalletInfo: FC<IProps> = ({ data }) => {
-  return (
-    <section>
-      <Text>{`Wallet ${data.accounts[0].address} connected!`}</Text>
-    </section>
-  )
-}
+export const WalletInfo: FC<IProps> = ({ data }) => (
+  <Text>{`Wallet ${data.accounts[0].address} connected!`}</Text>
+)

@@ -7,10 +7,10 @@ init({
   wallets: wallets,
   chains: [
     {
-      id: '0x4',
-      token: 'Rinkeby ETH',
-      label: 'Rinkeby Test Network',
-      rpcUrl: 'https://rinkeby.infura.io/v3/',
+      id: process.env.NEXT_PUBLIC_CHAIN_ID ?? '',
+      token: process.env.NEXT_PUBLIC_CHAIN_TOKEN ?? '',
+      label: process.env.NEXT_PUBLIC_CHAIN_LABEL ?? '',
+      rpcUrl: process.env.NEXT_PUBLIC_CHAIN_RCP_URL ?? '',
     },
   ],
   appMetadata: appMetaData,

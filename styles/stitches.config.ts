@@ -10,6 +10,7 @@ export const { styled, getCssText } = createStitches({
       text: '#fff',
       textSecondary: '#026388',
       textTerniary: '#845ec2',
+      textError: '#df4c4c',
       backgroundLight: '#fee152',
       backgroundDark: '#7d8adb',
       border: '#caced4',

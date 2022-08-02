@@ -1,11 +1,6 @@
 import { styled } from 'styles/stitches.config'
 
-export const Form = styled('form', {
-  display: 'flex',
-  gap: '$2',
-})
-
-export const TxHistory = styled('div', {
+export const Container = styled('div', {
   marginTop: '$3',
 })
 
