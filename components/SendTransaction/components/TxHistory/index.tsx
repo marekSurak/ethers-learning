@@ -22,7 +22,7 @@ export const TxHistory: FC<IProps> = ({ txData, txStatus }) => (
     <TxLine>
       <Text>
         <a
-          href={`https://rinkeby.etherscan.io/tx/${txData.hash}`}
+          href={`${process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL}/tx/${txData.hash}`}
           target="_blank"
           rel="noopener noreferrer"
         >
