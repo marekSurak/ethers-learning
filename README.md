@@ -1,4 +1,6 @@
 # Learning ethers app
+![Screenshot 2022-08-03 at 11 16 41](https://user-images.githubusercontent.com/20334563/182572200-8fecbc0f-29b8-472f-bd2a-e9ab094affce.png)
+
 
 This app was built for learning ethers library and intro to the web3 world.
 You can connect your wallet and make a simple transaction, which is send ETH to another wallet.
