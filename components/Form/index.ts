@@ -6,7 +6,3 @@ export const Form = styled('form', {
   gap: '$2',
   marginTop: '$2',
 })
-
-export const FormLine = styled('div', {
-  width: '100%',
-})

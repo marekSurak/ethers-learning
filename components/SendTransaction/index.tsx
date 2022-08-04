@@ -2,6 +2,7 @@ import { ethers } from 'ethers'
 import { useState } from 'react'
 
 import { Box } from 'components/Box'
+import { Heading } from 'components/Heading'
 import { Text } from 'components/Text'
 import { Transaction } from 'types/transaction'
 
@@ -44,6 +45,9 @@ export const SendTransaction = ({ ethProvider }: IProps) => {
 
   return (
     <Box>
+      <Heading variant="terniary" as="h3" size="4">
+        Writing to blockchain
+      </Heading>
       <SendTxForm txStatus={txStatus} onSubmit={handleSubmitForm} />
       {tsxData && <TxHistory txData={tsxData} txStatus={txStatus} />}
       {txStatus === Transaction.ERROR && (

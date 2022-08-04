@@ -4,9 +4,10 @@ import { ConnectWallet } from 'components/ConnectWallet'
 import { Heading } from 'components/Heading'
 import { Layout } from 'components/Layout'
 import { SendTransaction } from 'components/SendTransaction'
-import { getEthProvider } from 'utils/getEthProvider'
+import { SmartContract } from 'components/SmartContract'
+import { getEthProvider } from 'utils/ethers/getEthProvider'
+import { useInitOnboard } from 'utils/ethers/useInitOnboard'
 import { substractMiddleString } from 'utils/substractMiddleString'
-import { useInitOnboard } from 'utils/useInitOnboard'
 
 const Onboard: NextPage = () => {
   const { wallet, isConnecting } = useInitOnboard()
@@ -26,6 +27,7 @@ const Onboard: NextPage = () => {
       </Heading>
       <ConnectWallet />
       {isAuthorized && <SendTransaction ethProvider={ethProvider} />}
+      {isAuthorized && <SmartContract ethProvider={ethProvider} />}
     </Layout>
   )
 }

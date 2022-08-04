@@ -4,10 +4,11 @@ import { useForm, FormProvider } from 'react-hook-form'
 
 import { Button } from 'components/Button'
 import { Input } from 'components/Input'
+import { Text } from 'components/Text'
 import { Transaction } from 'types/transaction'
 
 import { schema } from './schema'
-import { ErrorMsg, Form, FormLine } from './styled'
+import { Form, FormLine } from './styled'
 import type { ISendTxFormData } from './types'
 
 interface IProps {
@@ -43,7 +44,7 @@ export const SendTxForm: FC<IProps> = ({ onSubmit, txStatus }) => {
             placeholder="Enter your wallet address (0x...)"
             {...register(INPUT_ID)}
           />
-          {inputError && <ErrorMsg>{inputError}</ErrorMsg>}
+          {inputError && <Text color="error">{inputError}</Text>}
         </FormLine>
         <Button variant="secondary" type="submit" disabled={isPending}>
           {isPending ? 'Sending...' : 'Send 0.01 ETH'}
