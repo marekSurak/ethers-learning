@@ -1,5 +1,5 @@
 import { Button } from 'components/Button'
-import { useInitOnboard } from 'utils/useInitOnboard'
+import { useInitOnboard } from 'utils/ethers/useInitOnboard'
 
 export const ConnectWallet = () => {
   const { connect, disconnect, wallet } = useInitOnboard()

@@ -1,7 +1,7 @@
 import { init, useConnectWallet } from '@web3-onboard/react'
 
-import { appMetaData } from '../constants/appMetaData'
-import { wallets } from '../constants/wallets'
+import { appMetaData } from '../../constants/appMetaData'
+import { wallets } from '../../constants/wallets'
 
 init({
   wallets: wallets,

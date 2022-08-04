@@ -8,12 +8,13 @@ export const { styled, getCssText } = createStitches({
     },
     colors: {
       text: '#fff',
-      textSecondary: '#026388',
+      textSecondary: '#7a7d80',
       textTerniary: '#845ec2',
       textError: '#df4c4c',
       backgroundLight: '#fee152',
       backgroundDark: '#7d8adb',
       border: '#caced4',
+
       linearGradient:
         'linear-gradient(to right top, #845ec2, #806ecc, #7e7cd4, #7d8adb, #7f97e1, #76a5eb, #6eb2f2, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1)',
     },
