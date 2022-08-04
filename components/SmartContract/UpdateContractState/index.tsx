@@ -10,6 +10,7 @@ import { Input } from 'components/Input'
 import { FormLine } from 'components/SendTransaction/components/SendTxForm/styled'
 import { TxHistory } from 'components/SendTransaction/components/TxHistory'
 import { Text } from 'components/Text'
+import { BLOCK_CONFIRMATION_WAIT } from 'constants/ethers'
 import { Transaction } from 'types/transaction'
 import { updateMessage } from 'utils/contract/updateMessage'
 import { getContract } from 'utils/ethers/getContract'
@@ -55,10 +56,11 @@ export const UpdateStateContract: FC<IProps> = ({ ethProvider }) => {
         data: data.message,
       })
 
+      // we already know the metadata of the TX, so we can create a link to Etherscan and etc.
       setTsxData(tx)
 
       // wait for at least 1 block confirmation
-      await tx.wait(1)
+      await tx.wait(BLOCK_CONFIRMATION_WAIT)
 
       setTxStatus(Transaction.SUCCESS)
     } catch (e) {

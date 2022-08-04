@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Box } from 'components/Box'
 import { Heading } from 'components/Heading'
 import { Text } from 'components/Text'
+import { BLOCK_CONFIRMATION_WAIT } from 'constants/ethers'
 import { Transaction } from 'types/transaction'
 
 import { SendTxForm } from './components/SendTxForm'
@@ -28,13 +29,13 @@ export const SendTransaction = ({ ethProvider }: IProps) => {
     try {
       const tx = await signer.sendTransaction({
         to: data.recipientAddress,
-        value: ethers.utils.parseEther('0.01'),
+        value: ethers.utils.parseEther('0.01'), // convert to BigNumber
       })
 
       setTsxData(tx)
 
       // wait for at least 1 block confirmation
-      await tx.wait(1)
+      await tx.wait(BLOCK_CONFIRMATION_WAIT)
 
       setTxStatus(Transaction.SUCCESS)
     } catch (e) {

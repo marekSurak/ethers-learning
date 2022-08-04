@@ -8,11 +8,13 @@ interface IProps {
 
 type TxResponse = ethers.providers.TransactionResponse
 
+// Update state of the smart-contract
 export const updateMessage = async ({
   provider,
   contract,
   data,
 }: IProps): Promise<TxResponse> => {
+  // for state changing/writing methods we need to create Signer (authorized for perform operation)
   const signer = provider.getSigner()
   const daitWithSigner = contract?.connect(signer)
   const tx = await daitWithSigner?.update(data)
