@@ -5,8 +5,8 @@
 This app was built for learning [ethers](https://docs.ethers.io/v5/) library and intro to the web3 world.
 You can connect your wallet and make a simple transaction, which is send ETH to another wallet.
 
-This repository is using "hello world" smart contract. You can check it here:
-[https://github.com/marekSurak/smart-contract](https://github.com/marekSurak/smart-contract)
+This repository is using "hello world" smart contract. You can check it
+[here](https://github.com/marekSurak/smart-contract).
 
 ## Table of Contents
 
@@ -21,9 +21,20 @@ This repository is using "hello world" smart contract. You can check it here:
 After connecting your wallet you have to options:
 
 1. Send 0.01 ETH to another wallet
-2. Interact with smart-contract build [here](https://github.com/marekSurak/smart-contract). You can read and update state. This is just displaying and updating the string stored in the smart-contract state, altough in the real world smart-contract will provide methods used for claiming token or minting some fancy NFT.
+2. Interact with smart-contract built [here](https://github.com/marekSurak/smart-contract). You can read and update state. This is just displaying and updating the string stored in the smart-contract state, altough in the real world smart-contract will provide methods used for claiming token or minting some fancy NFT.
 
-For simplicity of the app I did not implement some features like global state, session storage and etc.
+App is connected to [Goerli](https://goerli.etherscan.io/) testnet. In order to change the testnet you have to setup following variables in `.env` file.
+If you do so, please also use the correct testnet in Metamask extension.
+
+```
+NEXT_PUBLIC_CHAIN_ID
+NEXT_PUBLIC_CHAIN_TOKEN
+NEXT_PUBLIC_CHAIN_LABEL
+NEXT_PUBLIC_CHAIN_RCP_URL
+NEXT_PUBLIC_BLOCK_EXPLORER_URL
+```
+
+<b>For simplicity of the app I did not implement some features like global state, session storage, advanced error handling and etc.</b>
 
 ## Ethers alternative
 
@@ -86,7 +97,7 @@ Project was setup using template [`create-next-ts-cqt`](https://github.com/marek
 
 ### Terminology
 
-Provider <br />
+<b>Provider</b> <br />
 `ethers.Provider` is a read only abstraction providing a connection to the Ethereum network
 
 ```
@@ -98,7 +109,7 @@ const [{ wallet }] = useConnectWallet()
 const provider = new ethers.providers.Web3Provider(wallet.provider)
 ```
 
-Signer <br />
+<b>Signer</b> <br />
 `signer` provides an access to private key, which means you can sign message and authorize transaction which can charge your account like sending ETH and write operations in smart-contract.
 
 ```
@@ -111,7 +122,7 @@ const tx = await signer.sendTransaction({
 })
 ```
 
-Contract <br />
+<b>Contract</b> <br />
 `ethers.Contract` represents an object with mapped methods for interaction with specific contract on Ethereum network
 
 ```
