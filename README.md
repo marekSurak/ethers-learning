@@ -206,7 +206,7 @@ const message = (await contract.message()) as string
 
 Since this is read-only operation, Signer is not needed.
 
-Write to smart-contract
+<b>Write to smart-contract</b>
 
 ```
   try{
