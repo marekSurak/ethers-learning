@@ -15,6 +15,7 @@ This repository is using "hello world" smart contract. You can check it
 [Requirements](#requirements)<br />
 [Tech stack](#tech-stack) <br />
 [Ethers basics](#ethers-basics) <br />
+[Examples](#examples) <br />
 
 ## App overview
 
@@ -61,7 +62,7 @@ According to [Bundlephobia](https://bundlephobia.com/)
 
 ## Requirements
 
-- [Metamask](https://metamask.io/) browser extension - setup used testnet (Goerli)
+- [Metamask](https://metamask.io/) browser extension - setup currently used testnet (Goerli)
 - [Alchemy](https://www.alchemy.com/) - Alchemy account is needed to get free ETH
 - [Goerli faucet](https://goerlifaucet.com/) - free test ETH to your wallet on testnet (Goerli)
 
@@ -134,7 +135,7 @@ const contract = new ethers.Contract(address, abi, provider)
 
 ### Examples
 
-Initialization
+<b>Initialization</b>
 
 ```
 import { init } from '@web3-onboard/react'
@@ -163,7 +164,7 @@ init({
 })
 ```
 
-Connect wallet
+<b>Connect wallet</b>
 
 ```
 import { useInitOnboard } from 'utils/useInitOnboard'
@@ -177,7 +178,7 @@ const handleConnectWallet = async () => {
 <button onClick={handleConnectWallet} type="button">Connect wallet!</button>
 ```
 
-Send transaction
+<b>Send transaction</b>
 
 ```
 try {
@@ -195,7 +196,7 @@ try {
 
 ```
 
-Read smart-contract
+<b>Read smart-contract</b>
 
 Smart contract contains `public string message;` and it automatically creates a getter function for us so we ca use it like this:
 
