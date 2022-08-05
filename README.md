@@ -99,7 +99,7 @@ Project was setup using template [`create-next-ts-cqt`](https://github.com/marek
 ### Terminology
 
 <b>Provider</b> <br />
-`ethers.Provider` is a read only abstraction providing a connection to the Ethereum network
+is a read only abstraction providing a connection to the Ethereum network
 
 ```
 import { ethers } from 'ethers'
@@ -111,7 +111,7 @@ const provider = new ethers.providers.Web3Provider(wallet.provider)
 ```
 
 <b>Signer</b> <br />
-`signer` provides an access to private key, which means you can sign message and authorize transaction which can charge your account like sending ETH and write operations in smart-contract.
+provides an access to private key, which means you can sign message and authorize transaction which can charge your account like sending ETH and write operations in smart-contract.
 
 ```
 const signer = provider.getSigner()
@@ -124,7 +124,7 @@ const tx = await signer.sendTransaction({
 ```
 
 <b>Contract</b> <br />
-`ethers.Contract` represents an object with mapped methods for interaction with specific contract on Ethereum network
+represents an object with mapped methods for interaction with specific contract on Ethereum network
 
 ```
 // address = addres of deployed smart contract on Ethereum network
