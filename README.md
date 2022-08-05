@@ -136,10 +136,80 @@ const contract = new ethers.Contract(address, abi, provider)
 
 Initialization
 
+```
+import { init } from '@web3-onboard/react'
+
+// loading injected wallets
+import injectedModule from '@web3-onboard/injected-wallets'
+
+init({
+  wallets: [injectedModule({})],
+  chains: [
+    {
+      id: '0x5'
+      token: 'Goerli ETH',
+      label: 'Goerli Test Network',
+      rpcUrl: 'https://goerli.infura.io/v3/',
+    },
+  ],
+  appMetadata: {
+    name: 'Ethers learning app',
+    description: 'Learning web3 is fun!',
+    icon: '/vercel.svg',
+    recommendedInjectedWallets: [
+      { name: 'MetaMask', url: 'https://metamask.io' },
+    ],
+  },
+})
+```
+
 Connect wallet
+
+```
+import { useInitOnboard } from 'utils/useInitOnboard'
+
+const { connect } = useInitOnboard()
+
+const handleConnectWallet = async () => {
+  await connect()
+}
+
+<button onClick={handleConnectWallet} type="button">Connect wallet!</button>
+```
 
 Send transaction
 
+```
+try {
+  const tx = await signer.sendTransaction({
+    to: '0x...',
+    value: ethers.utils.parseEther('0.01'),
+  })
+
+  tx.await(1) // number of blocks to wait
+  // transaction successfull
+
+} catch (e) {
+  // transaction failed
+}
+
+```
+
 Read smart-contract
 
+Smart contract contains `public string message;` and it automatically creates a getter function for us so we ca use it like this:
+
+```
+const message = (await contract.message()) as string
+```
+
+Since this is read-only operation, Signer is not needed.
+
 Write to smart-contract
+
+```
+  try{
+    const tx = await signer?.update("Hello World!")
+    tx.await(1)
+  } catch (e) { ... }
+```
